@@ -1,0 +1,59 @@
+{
+    "parserOptions": {
+      "ecmaVersion": 2019,
+      "sourceType": "module"
+    },
+    "extends": [
+      "react-app",
+      "eslint:recommended"
+    ],
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "rules": {
+      "indent": [
+        "error",
+        "tab"
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-trailing-spaces": [
+        "error"
+      ],
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "space-infix-ops": "error",
+      "require-await": "error",
+      "keyword-spacing": "error",
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "jsx-a11y/anchor-is-valid": "off",
+      "no-prototype-builtins": "off",
+      "no-mixed-spaces-and-tabs": "error"
+    }
+  }
