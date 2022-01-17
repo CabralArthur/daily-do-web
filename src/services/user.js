@@ -1,5 +1,10 @@
 import client from './client';
 
+export const getInfo = ({ id }) => client({
+	method: 'get',
+	url: `/user/${id}`
+});
+
 export const create = ({ name, username, password, confirm_password }) => client({
 	method: 'post',
 	url: '/user',

@@ -1,24 +1,24 @@
 import { toast } from 'react-toastify';
 import { React, useState } from 'react';
+import Login from '../../components/Login';
 
-import { create } from '../../services/user';
+import { authenticate } from '../../services/auth';
+import { saveSession } from '../../services/storage';
 
-import SignUp from '../../components/SignUp';
-
-const SignUpContainer = props => {
+const LoginContainer = props => {
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
 
-	const onLoginClick = () => props.history.push('/login');
+	const onSignUpClick = () => props.history.push('/sign-up');
 
-	const onSignUpClick = async values => {
+	const onLoginClick = async values => {
 		setLoading(true);
 
-		const { name, userName, password, passwordConfirmation } = values;
-		const { error, data } = await create({ name, username: userName, password, confirm_password: passwordConfirmation });
+		const { username, password } = values;
+		const { error, data } = await authenticate({ username, password });
 
 		if (data) {
-			toast.success('Usuário criado com sucesso!', {
+			toast.success('Login feito com sucesso!', {
 				position: 'bottom-center',
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -27,7 +27,10 @@ const SignUpContainer = props => {
 				draggable: true,
 				progress: undefined
 			});
-		} else if (error.code === 409) {
+
+			saveSession(data);
+			props.history.push('/home');
+		} else if (error) {
 			setError(error.message);
 			toast.error(error.message, {
 				position: 'bottom-center',
@@ -39,12 +42,11 @@ const SignUpContainer = props => {
 				progress: undefined
 			});
 		}
-
 		setLoading(false);
 	};
 
 	return (
-		<SignUp
+		<Login
 			error={error}
 			loading={loading}
 			onLoginClick={onLoginClick}
@@ -53,4 +55,4 @@ const SignUpContainer = props => {
 	);
 };
 
-export default SignUpContainer;
+export default LoginContainer;
