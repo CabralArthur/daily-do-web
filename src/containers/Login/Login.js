@@ -19,7 +19,7 @@ const LoginContainer = props => {
 
 		if (data) {
 			toast.success('Login feito com sucesso!', {
-				position: 'bottom-center',
+				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -29,11 +29,11 @@ const LoginContainer = props => {
 			});
 
 			saveSession(data);
-			props.history.push('/home');
+			props.history.push('/');
 		} else if (error) {
 			setError(error.message);
 			toast.error(error.message, {
-				position: 'bottom-center',
+				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
