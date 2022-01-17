@@ -5,6 +5,11 @@ export const getInfo = ({ id }) => client({
 	url: `/user/${id}`
 });
 
+export const getUsers = () => client({
+	method: 'get',
+	url: '/user'
+});
+
 export const create = ({ name, username, password, confirm_password }) => client({
 	method: 'post',
 	url: '/user',
