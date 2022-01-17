@@ -6,21 +6,19 @@ import {
 	Center
 } from '@chakra-ui/react';
 
-const Home = ({ error, loading }) => {
+const Admin = ({ error, loading, users }) => {
 	return (
-		<>
-			<Box h='calc(100vh - 145px)'>
-				<Center h='100%'>
-					Container
-				</Center>
-			</Box>
-		</>
+		<Box h='calc(100vh - 145px)'>
+			<Center h='100%'>
+				AdminContainer
+			</Center>
+		</Box>
 	);
 };
 
-Home.propTypes = {
+Admin.propTypes = {
 	error: PropTypes.string,
 	loading: PropTypes.bool.isRequired
 };
 
-export default Home;
+export default Admin;
