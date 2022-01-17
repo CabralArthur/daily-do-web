@@ -19,7 +19,7 @@ const SignUpContainer = props => {
 
 		if (data) {
 			toast.success('Usuário criado com sucesso!', {
-				position: 'bottom-center',
+				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,
@@ -30,7 +30,7 @@ const SignUpContainer = props => {
 		} else if (error.code === 409) {
 			setError(error.message);
 			toast.error(error.message, {
-				position: 'bottom-center',
+				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
 				closeOnClick: true,

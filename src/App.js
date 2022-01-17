@@ -8,18 +8,17 @@ import HomeContainer from './containers/Home';
 import UserContext from './context/UserContext';
 
 import {
-	Box,
 	Flex,
-	Button,
+	Menu,
+	Text,
 	Heading,
-	useDisclosure
+	MenuList,
+	MenuItem,
+	MenuButton
 } from '@chakra-ui/react';
-import { HamburgerIcon } from '@chakra-ui/icons';
 
 const App = props => {
 	const [user, setUser] = useState({});
-	const { isOpen, onOpen, onClose } = useDisclosure();
-	const handleToggle = () => (isOpen ? onClose() : onOpen());
 
 	const onLogoutClick = () => {
 		logout();
@@ -42,23 +41,36 @@ const App = props => {
 				bgGradient='linear(to-r, #f46b45, #eea849)'
 			>
 				<Flex align="center" mr={5}>
-					<Heading as="h1" size="lg" letterSpacing={'tighter'}>
+					<Heading as="h1" size="md" letterSpacing={'tighter'}>
 						DailyDo - Gerenciamento de Tarefas
 					</Heading>
 				</Flex>
 
-				<Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
-					<HamburgerIcon />
-				</Box>
-
-				<Box display={{ base: isOpen ? 'block' : 'none', md: 'block' }} mt={{ base: 4, md: 0 }}>
-					<Button variant='outline' _hover={{ bg: 'teal.700', borderColor: 'teal.700' }} onClick={() => onLogoutClick()}>
-						Sair
-					</Button>
-				</Box>
+				<Flex
+					align="center"
+					justify="space-between"
+					wrap="wrap"
+				>
+					<Menu>
+						<MenuButton
+							minW={0}
+							variant={'link'}
+							cursor={'pointer'}>
+							<Heading size="md" mr='1rem'>Olá, {user.name}</Heading>
+						</MenuButton>
+						<MenuList>
+							<MenuItem>
+								<Text color='gray.500'>Configurações</Text>
+							</MenuItem>
+							<MenuItem onClick={() => onLogoutClick()}>
+								<Text color='gray.500'>Sair</Text>
+							</MenuItem>
+						</MenuList>
+					</Menu>
+				</Flex>
 			</Flex>
 			<UserContext.Provider value={user}>
-				<Route exact path="/home" component={HomeContainer} />
+				<Route exact path="/" component={HomeContainer} />
 			</UserContext.Provider>
 		</>
 	);
